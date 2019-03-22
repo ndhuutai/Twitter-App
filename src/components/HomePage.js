@@ -1,8 +1,8 @@
 import React from 'react';
 
 const HomePage = () => (
-	<div className="alert alert-primary">
-		HELLO WORLD!
+	<div>
+		This is where you find tweets
 	</div>
 );
 
