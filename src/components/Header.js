@@ -8,7 +8,7 @@ export default () => (
 			<div className="row">
 				<NavLink to="/" exact={true} className="nav-link col-sm text-center" activeClassName="active">Home</NavLink>
 				<NavLink to="/search" className="nav-link col-sm text-center" activeClassName="active">User Search</NavLink>
-				<NavLink to="/showcase" className="nav-link col-sm text-center" activeClassName="active">Tweet Showcase</NavLink>
+				<NavLink to="/randomTweet" className="nav-link col-sm text-center" activeClassName="active">Tweet Showcase</NavLink>
 			</div>
 		</div>
 	</div>

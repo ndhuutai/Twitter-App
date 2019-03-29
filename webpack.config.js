@@ -55,7 +55,7 @@ module.exports = {
 		contentBase: path.join(__dirname, 'public'),
 		historyApiFallback: true,
 		proxy: [{
-			context: ['/home', '/searchTweets'],
+			context: ['/searchUser', '/searchTweets'],
 			target: 'http://localhost:3000'
 		}]
 	},

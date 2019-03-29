@@ -30,13 +30,23 @@ app.use(bodyParser.json());
 app.get('/', (req,res) => {
 });
 
-//routes
-app.get('/home', (req, res) => {
-	res.send('Hello from Express');
+app.get('/searchTweets', (req,res) => {
+	console.log(req.query);
+	axios.get('https://api.twitter.com/1.1/search/tweets.json', {
+		headers: {
+			'Content-Type': 'application/json',
+			'Accept': 'application/json',
+			Authorization: `Bearer ${token}`
+		},
+		params: {
+			...req.query
+		}
+	}).then(response => res.send(response.data))
+		.catch(err => res.send(err.response.data));
 });
 
-app.get('/searchTweets', (req,res) => {
-	axios.get('https://api.twitter.com/1.1/search/tweets.json', {
+app.get('/searchUser', (req, res) => {
+	axios.get('https://api.twitter.com/1.1/users/lookup.json', {
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/json',

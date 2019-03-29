@@ -21,7 +21,7 @@ class SearchForm extends React.Component {
 			<div>
 				<form onSubmit={this.onSubmit}>
 					<div className="form-group">
-						<label htmlFor="exampleInputPassword1">Search Text</label>
+						<label>Search Text</label>
 						<input type="text" onChange={this.onChange} name="input" className="form-control" placeholder="text to search"/>
 					</div>
 					<button type="submit" className="btn btn-primary">Search</button>

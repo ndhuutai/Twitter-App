@@ -6,9 +6,6 @@ import {startSetTweets, resetTweets} from '../actions/tweets';
 import {setTextFilter, setTypeFilter} from '../actions/filters';
 import Tweet from './Tweet';
 
-
-
-
 class SearchPage extends React.Component {
 
 	onClick = (tweet_type) => {

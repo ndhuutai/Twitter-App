@@ -19,7 +19,6 @@ export const startSetTweets = (filters) => {
 				}
 			}).then(response => response.data.statuses)
 				.then((tweets) => {
-					console.log(typeof tweets);
 					dispatch(setTweets(tweets));
 				}).catch(err => console.log(err));
 		} else {
