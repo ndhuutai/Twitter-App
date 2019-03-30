@@ -14,7 +14,6 @@ const jsx = (
 		<AppRouter/>
 	</Provider>
 );
-
 store.subscribe(() => {
 	console.log(store.getState());
 });

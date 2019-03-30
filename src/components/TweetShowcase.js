@@ -29,7 +29,7 @@ class TweetShowcase extends React.Component {
 
 	onSubmit = (e) => {
 		e.preventDefault();
-		const index = this.props.filters.users.findIndex(user => user === e.target.input.value);
+		const index = this.props.filters.users.findIndex(user => user.toLowerCase() === e.target.input.value.toLowerCase());
 		if(index >= 0) {
 			this.setState({
 				error: {
@@ -86,10 +86,12 @@ class TweetShowcase extends React.Component {
 						<UserInput key={index} id={index} user={user} onChange={this.onChange} onRemove={this.onRemove}/>
 					)):<p>Currently there is no user/handle selection</p>}
 				{this.state.error.state?<div className="alert alert-danger">{this.state.error.message}</div>:''}
-				<form onSubmit={this.onSubmit}>
-					<div className="form-group">
-						<input type="text" className="form-control" name="input" placeholder="Add name or handle"/>
-					</div>
+				<form onSubmit={this.onSubmit} className="input-group mb-3 w-auto">
+					<input type="text" name="input" className="form-control" placeholder="Add user's name or handle"
+					        aria-describedby="basic-addon2"/>
+						<div className="input-group-append">
+							<button className="btn btn-outline-primary" type="button">Add</button>
+						</div>
 				</form>
 				<button className="btn btn-primary" onClick={this.onClick}>RANDOMIZE!</button>
 				{this.getRandomTweet()?<Tweet {...this.getRandomTweet()}/>:''}
