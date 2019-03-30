@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import axios from 'axios';
 import SearchForm from './SearchForm';
 import {startSetTweets, resetTweets} from '../actions/tweets';
 import {setTextFilter, setTypeFilter} from '../actions/filters';

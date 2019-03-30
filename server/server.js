@@ -4,6 +4,9 @@ const axios = require('axios');
 const bodyParser = require('body-parser');
 const Base64 = require('js-base64').Base64;
 const keys = require('./config/keys');
+const path = require('path');
+const publicPath = path.join(__dirname, '..','public');
+
 
 let token = '';
 
@@ -26,12 +29,13 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.use(express.static(publicPath));
 
-app.get('/', (req,res) => {
+app.get('*', (req, res) => {
+	res.sendFile(path.join(publicPath,'index.html'));
 });
 
 app.get('/searchTweets', (req,res) => {
-	console.log(req.query);
 	axios.get('https://api.twitter.com/1.1/search/tweets.json', {
 		headers: {
 			'Content-Type': 'application/json',
