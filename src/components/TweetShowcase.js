@@ -24,7 +24,7 @@ class TweetShowcase extends React.Component {
 			const random = Math.floor(Math.random() * this.props.tweets.length);
 			return this.props.tweets[random];
 		}
-		return '';
+		return <div className="alert alert alert-warning">There is no tweet to show</div>;
 	};
 
 	onSubmit = (e) => {
@@ -91,7 +91,7 @@ class TweetShowcase extends React.Component {
 					<input type="text" name="input" className="form-control" placeholder="Add user's name or handle"
 					        aria-describedby="basic-addon2"/>
 						<div className="input-group-append">
-							<button className="btn btn-outline-primary" type="button">Add</button>
+							<button className="btn btn-outline-primary" type="submit">Add</button>
 						</div>
 				</form>
 				<button className="btn btn-primary" onClick={this.onClick}>RANDOMIZE!</button>
