@@ -6,6 +6,7 @@ const Base64 = require('js-base64').Base64;
 const keys = require('./config/keys');
 const path = require('path');
 const publicPath = path.join(__dirname, '..','public');
+const port = process.env.PORT || 3000;
 
 
 let token = '';
@@ -63,6 +64,6 @@ app.get('/searchUser', (req, res) => {
 		.catch(err => res.send(err.response.data));
 });
 
-app.listen(3000, () => {
-	console.log('server is running on port 3000 ');
+app.listen(port, () => {
+	console.log('Server is up and running!');
 });
