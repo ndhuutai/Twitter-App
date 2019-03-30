@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import HomePage from '../components/HomePage';
 import SearchPage from '../components/SeachPage';
 import TweetShowCase from '../components/TweetShowcase';
+import NotFoundPage from '../components/NotFoundPage';
 
 export default () => (
 	<BrowserRouter>
@@ -13,6 +14,7 @@ export default () => (
 				<Route path="/" exact={true} component={HomePage}/>
 				<Route path="/search" component={SearchPage}/>
 				<Route path="/randomTweet" component={TweetShowCase}/>
+				<Route component={NotFoundPage}/>
 			</Switch>
 			<div className="bg"></div>
 		</div>

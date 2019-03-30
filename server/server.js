@@ -32,9 +32,6 @@ app.use(bodyParser.json());
 
 app.use(express.static(publicPath));
 
-app.get('*', (req, res) => {
-	res.sendFile(path.join(publicPath,'index.html'));
-});
 
 app.get('/searchTweets', (req,res) => {
 	axios.get('https://api.twitter.com/1.1/search/tweets.json', {
@@ -62,6 +59,10 @@ app.get('/searchUser', (req, res) => {
 		}
 	}).then(response => res.send(response.data))
 		.catch(err => res.send(err.response.data));
+});
+
+app.get('*', (req, res) => {
+	res.sendFile(path.join(publicPath,'index.html'));
 });
 
 app.listen(port, () => {
