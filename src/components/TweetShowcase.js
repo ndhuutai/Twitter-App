@@ -66,7 +66,8 @@ class TweetShowcase extends React.Component {
 		}
 		this.props.startSetTweets({
 			...this.props.filters,
-			text: `from:${this.props.filters.users[this.randomizeUser()]}`
+			text: `from:${this.props.filters.users[this.randomizeUser()]}`,
+			tweet_type: 'mixed'
 		});
 	};
 
