@@ -16,21 +16,23 @@ export const addUserFilter = (user) => ({
 });
 
 export const startAddUserFilter = (user) => {
-	return (dispatch) => {
-		return axios.get('/searchUser', {
-			params: {
-				screen_name: user
+	return async (dispatch) => {
+		try {
+			const { data } = await axios.get('/searchUser', {
+				params: {
+					screen_name: user
+				}
+			});
+
+			//check if response has errors
+			if(data.hasOwnProperty('errors')) {
+				throw new Error(data.errors[0].message);
 			}
-		}).then(response => {
-			if(response.data.hasOwnProperty('errors')) {
-				throw new Error(response.data.errors[0].message);
-			}
-			return response.data;
-		})
-			.then(data => {
-				dispatch(addUserFilter(data[0].screen_name));
-			})
-			.catch(err => err);
+
+			dispatch(addUserFilter(data[0].screen_name));
+		} catch (e) {
+			return e;
+		}
 	}
 };
 
