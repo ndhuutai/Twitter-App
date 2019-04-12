@@ -1,14 +1,15 @@
 const express = require('express');
-
 const router = express.Router();
+const axios = require('axios');
+const getAuthenticationToken = require('../middleware/application');
 
-router.get('/searchTweets', async (req,res) => {
+router.get('/searchTweets', getAuthenticationToken, async (req,res) => {
 	try {
 		const { data } = await axios.get('https://api.twitter.com/1.1/search/tweets.json', {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				Authorization: `Bearer ${token}`
+				Authorization: `Bearer ${req.token}`
 			},
 			params: {
 				...req.query
@@ -21,13 +22,13 @@ router.get('/searchTweets', async (req,res) => {
 	}
 });
 
-app.get('/searchUser', async (req, res) => {
+router.get('/searchUser', getAuthenticationToken, async (req, res) => {
 	try {
-		const { data }= await axios.get('https://api.twitter.com/1.1/users/lookup.json', {
+		const { data } = await axios.get('https://api.twitter.com/1.1/users/lookup.json', {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				Authorization: `Bearer ${token}`
+				Authorization: `Bearer ${req.token}`
 			},
 			params: {
 				...req.query
@@ -40,6 +41,4 @@ app.get('/searchUser', async (req, res) => {
 	}
 });
 
-module.exports = {
-	router
-};
+module.exports = router;

@@ -52,7 +52,6 @@ module.exports = (env) => {
 			}]
 		},
 		plugins: [
-			new MomentLocalesPlugin(),
 			new MomentLocalesPlugin({
 				localesToKeep: ['es-us'],
 			}),
