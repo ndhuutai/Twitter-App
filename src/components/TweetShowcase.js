@@ -39,8 +39,7 @@ class TweetShowcase extends React.Component {
 			});
 		} else {
 			this.props.startAddUserFilter(e.target.input.value).then(error => {
-				console.log(error.toString());
-				if(error.toString().includes('Error')) {
+				if(error && error.toString().includes('Error')) {
 					this.setState({
 						error: {
 							state: true,
@@ -48,7 +47,7 @@ class TweetShowcase extends React.Component {
 						}
 					});
 				}
-			});
+			}).catch(e => console.log(e));
 
 			this.setState({
 				error: {
