@@ -6,9 +6,9 @@ const Base64 = require('js-base64').Base64;
 const keys = require('./config/keys');
 const path = require('path');
 const publicPath = path.join(__dirname, '..','public');
+const applicationRouter = require('./routes/application');
+
 const port = process.env.PORT || 3000;
-
-
 let token = '';
 
 axios.post('https://api.twitter.com/oauth2/token',
@@ -27,49 +27,11 @@ axios.post('https://api.twitter.com/oauth2/token',
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
-
 app.use(bodyParser.json());
-
 app.use(express.static(publicPath));
+//routes handlers for application-only requests
+app.use(applicationRouter);
 
-
-app.get('/searchTweets', async (req,res) => {
-	try {
-		const { data } = await axios.get('https://api.twitter.com/1.1/search/tweets.json', {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				Authorization: `Bearer ${token}`
-			},
-			params: {
-				...req.query
-			}
-		});
-
-		res.send(data);
-	} catch (e) {
-		res.send(e.response.data);
-	}
-});
-
-app.get('/searchUser', async (req, res) => {
-	try {
-		const { data }= await axios.get('https://api.twitter.com/1.1/users/lookup.json', {
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				Authorization: `Bearer ${token}`
-			},
-			params: {
-				...req.query
-			}
-		});
-
-		res.send(data);
-	} catch (e) {
-		res.send(e.response.data);
-	}
-});
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(publicPath,'index.html'));
